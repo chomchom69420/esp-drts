@@ -1,0 +1,47 @@
+-- IDF_TARGET is not set, guessed 'esp32' from sdkconfig '/home/sohamc1909/esp/Projects/esp-drts/esp-drts-proc2/sdkconfig'
+-- Found Git: /usr/bin/git (found version "2.39.2") 
+-- The C compiler identification is GNU 13.2.0
+-- The CXX compiler identification is GNU 13.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: /home/sohamc1909/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /home/sohamc1909/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /home/sohamc1909/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin/xtensa-esp32-elf-g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- git rev-parse returned 'fatal: not a git repository (or any of the parent directories): .git'
+-- Could not use 'git describe' to determine PROJECT_VER.
+-- Building ESP-IDF components for target esp32
+-- Project sdkconfig file /home/sohamc1909/esp/Projects/esp-drts/esp-drts-proc2/sdkconfig
+-- Compiler supported targets: xtensa-esp-elf
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of time_t
+-- Check size of time_t - done
+-- Found Python3: /home/sohamc1909/.espressif/python_env/idf5.2_py3.12_env/bin/python (found version "3.12.1") found components: Interpreter 
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
+-- App "esp-drts-proc2" version: 1
+-- Adding linker script /home/sohamc1909/esp/Projects/esp-drts/esp-drts-proc2/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_system/ld/esp32/sections.ld.in
+-- Adding linker script /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_rom/esp32/ld/esp32.rom.newlib-data.ld
+-- Adding linker script /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_rom/esp32/ld/esp32.rom.syscalls.ld
+-- Adding linker script /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_rom/esp32/ld/esp32.rom.newlib-funcs.ld
+-- Adding linker script /home/sohamc1909/esp/esp-idf-v5-2-1/components/soc/esp32/ld/esp32.peripherals.ld
+-- Components: app_trace app_update bootloader bootloader_support bt cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_bootloader_format esp_coex esp_common esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_system esp_timer esp_wifi espcoredump esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash nvs_sec_provider openthread partition_table perfmon protobuf-c protocomm pthread sdmmc soc spi_flash spiffs tcp_transport ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant xtensa
+-- Component paths: /home/sohamc1909/esp/esp-idf-v5-2-1/components/app_trace /home/sohamc1909/esp/esp-idf-v5-2-1/components/app_update /home/sohamc1909/esp/esp-idf-v5-2-1/components/bootloader /home/sohamc1909/esp/esp-idf-v5-2-1/components/bootloader_support /home/sohamc1909/esp/esp-idf-v5-2-1/components/bt /home/sohamc1909/esp/esp-idf-v5-2-1/components/cmock /home/sohamc1909/esp/esp-idf-v5-2-1/components/console /home/sohamc1909/esp/esp-idf-v5-2-1/components/cxx /home/sohamc1909/esp/esp-idf-v5-2-1/components/driver /home/sohamc1909/esp/esp-idf-v5-2-1/components/efuse /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp-tls /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_adc /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_app_format /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_bootloader_format /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_coex /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_common /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_eth /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_event /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_gdbstub /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_hid /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_http_client /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_http_server /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_https_ota /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_https_server /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_hw_support /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_lcd /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_local_ctrl /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_mm /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_netif /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_netif_stack /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_partition /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_phy /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_pm /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_psram /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_ringbuf /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_rom /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_system /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_timer /home/sohamc1909/esp/esp-idf-v5-2-1/components/esp_wifi /home/sohamc1909/esp/esp-idf-v5-2-1/components/espcoredump /home/sohamc1909/esp/esp-idf-v5-2-1/components/esptool_py /home/sohamc1909/esp/esp-idf-v5-2-1/components/fatfs /home/sohamc1909/esp/esp-idf-v5-2-1/components/freertos /home/sohamc1909/esp/esp-idf-v5-2-1/components/hal /home/sohamc1909/esp/esp-idf-v5-2-1/components/heap /home/sohamc1909/esp/esp-idf-v5-2-1/components/http_parser /home/sohamc1909/esp/esp-idf-v5-2-1/components/idf_test /home/sohamc1909/esp/esp-idf-v5-2-1/components/ieee802154 /home/sohamc1909/esp/esp-idf-v5-2-1/components/json /home/sohamc1909/esp/esp-idf-v5-2-1/components/log /home/sohamc1909/esp/esp-idf-v5-2-1/components/lwip /home/sohamc1909/esp/Projects/esp-drts/esp-drts-proc2/main /home/sohamc1909/esp/esp-idf-v5-2-1/components/mbedtls /home/sohamc1909/esp/esp-idf-v5-2-1/components/mqtt /home/sohamc1909/esp/esp-idf-v5-2-1/components/newlib /home/sohamc1909/esp/esp-idf-v5-2-1/components/nvs_flash /home/sohamc1909/esp/esp-idf-v5-2-1/components/nvs_sec_provider /home/sohamc1909/esp/esp-idf-v5-2-1/components/openthread /home/sohamc1909/esp/esp-idf-v5-2-1/components/partition_table /home/sohamc1909/esp/esp-idf-v5-2-1/components/perfmon /home/sohamc1909/esp/esp-idf-v5-2-1/components/protobuf-c /home/sohamc1909/esp/esp-idf-v5-2-1/components/protocomm /home/sohamc1909/esp/esp-idf-v5-2-1/components/pthread /home/sohamc1909/esp/esp-idf-v5-2-1/components/sdmmc /home/sohamc1909/esp/esp-idf-v5-2-1/components/soc /home/sohamc1909/esp/esp-idf-v5-2-1/components/spi_flash /home/sohamc1909/esp/esp-idf-v5-2-1/components/spiffs /home/sohamc1909/esp/esp-idf-v5-2-1/components/tcp_transport /home/sohamc1909/esp/esp-idf-v5-2-1/components/ulp /home/sohamc1909/esp/esp-idf-v5-2-1/components/unity /home/sohamc1909/esp/esp-idf-v5-2-1/components/usb /home/sohamc1909/esp/esp-idf-v5-2-1/components/vfs /home/sohamc1909/esp/esp-idf-v5-2-1/components/wear_levelling /home/sohamc1909/esp/esp-idf-v5-2-1/components/wifi_provisioning /home/sohamc1909/esp/esp-idf-v5-2-1/components/wpa_supplicant /home/sohamc1909/esp/esp-idf-v5-2-1/components/xtensa
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/sohamc1909/esp/Projects/esp-drts/esp-drts-proc2/build
