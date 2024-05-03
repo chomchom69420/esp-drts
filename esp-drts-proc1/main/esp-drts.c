@@ -256,5 +256,5 @@ void app_main(void)
     xTaskCreatePinnedToCore(vTask_A1, "Actuation Task 1", 2048, (void *) NULL, 2, &xTaskA1_handle, 1);
     xTaskCreatePinnedToCore(vTask_S1, "Sensing Task 1", 2048, (void *) NULL, 2, &xTaskS1_handle, 1);
     xTaskCreatePinnedToCore(vTask_P2, "Processing Task 2", 2048, (void *) NULL, 2, &xTaskP2_handle, 1);
-    xTaskCreatePinnedToCore(vTaskControl, "Control Task", 4096, (void *) NULL, 2, &xTaskControl_handle, 1);
+    xTaskCreatePinnedToCore(vTaskControl, "Control Task", 4096, (void *) NULL, 3, &xTaskControl_handle, 1);
 }

@@ -1,0 +1,24 @@
+void vTask_{TASK_NAME} (void *parameters) {
+    TickType_t xLastWakeTime;
+    const TickType_t xPeriod = sample_period;
+    Data_t xReceivedData;
+    BaseType_t xStatus;
+    for (;;) {
+        xLastWakeTime = xTaskGetTickCount();
+
+        //Read from the input queue
+        xStatus = xQueueReceive(xQueue_{TASK_NAME}_my{TASK_SET}, &xReceivedData, 0);
+        if(xStatus == errQUEUE_EMPTY) {
+            printf("Queue is empty!");
+        }
+
+        volatile long int a=0;
+        printf("{TASK_NAME} start: %lu\n", pdTICKS_TO_MS(xTaskGetTickCount()));
+        TickType_t timestamp = xTaskGetTickCount();
+        while (xTaskGetTickCount() - timestamp < xTask{TASK_NAME}_duration) {
+            a++;
+        }
+        printf("{TASK_NAME} end: %lu\n", pdTICKS_TO_MS(xTaskGetTickCount()));
+        vTaskDelayUntil(&xLastWakeTime, xPeriod); //reference, period
+    }
+}

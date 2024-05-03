@@ -1,0 +1,38 @@
+void vTask_{TASK_NAME} (void *parameters) {
+    TickType_t xLastWakeTime;
+    const TickType_t xPeriod = sample_period;
+    Data_t xReceivedData;
+    Data_t xSendData;
+    BaseType_t xStatus;
+    for (;;) {
+        xLastWakeTime = xTaskGetTickCount();
+
+        //Read from the input queue 
+        xStatus = xQueueReceive(xQueue_{TASK_NAME}_mx{TASK_SET}, &xReceivedData, 0);
+        if(xStatus == errQUEUE_EMPTY) {
+            printf("Queue is empty!");
+        }
+
+        volatile long int a=0;
+        printf("{TASK_NAME} start: %lu\n", pdTICKS_TO_MS(xTaskGetTickCount()));
+        TickType_t timestamp = xTaskGetTickCount();
+        while (xTaskGetTickCount() - timestamp < xTask{TASK_NAME}_duration) {
+            a++;
+        }
+        printf("{TASK_NAME} end: %lu\n", pdTICKS_TO_MS(xTaskGetTickCount()));
+
+        //Before exiting send to the output queue 
+        xSendData.eDataType = emy{TASK_SET};
+        xSendData.ucValue = 100;
+        xStatus = xQueueSendToBack(xQueue_{TASK_NAME}_my{TASK_SET}, (const void *) &xSendData, 0);
+
+        if(xStatus==errQUEUE_FULL) {
+            printf("Queue is full!");
+        }
+
+        //Resume the control task
+        vTaskResume(xTaskControl_handle);
+
+        vTaskDelayUntil(&xLastWakeTime, xPeriod); //reference, period
+    }
+}

@@ -1,0 +1,30 @@
+void vTask_{TASK_NAME} (void *parameters) {
+    TickType_t xLastWakeTime;
+    const TickType_t xPeriod = sample_period;
+    Data_t xSendData;
+    BaseType_t xStatus;
+    for (;;) {
+        xLastWakeTime = xTaskGetTickCount();
+        volatile long int a=0;
+        printf("{TASK_NAME} start: %lu\n", pdTICKS_TO_MS(xTaskGetTickCount()));
+        TickType_t timestamp = xTaskGetTickCount();
+        while (xTaskGetTickCount() - timestamp < xTask{TASK_NAME}_duration) {
+            a++;
+        }
+
+        //Store data to be sent
+        xSendData.eDataType = emx1;
+        xSendData.ucValue  = 200;
+        xStatus = xQueueSendToBack(xQueue_{TASK_NAME}_mx{TASK_SET}, (const void *) &xSendData, 0);
+        if(xStatus==errQUEUE_FULL) {
+            printf("Queue is full!");
+        }
+        printf("{TASK_NAME} end: %lu\n", pdTICKS_TO_MS(xTaskGetTickCount()));
+
+        //Resume control task for sending this over to CAN
+        vTaskResume(xTaskControl_handle);
+
+        //Delay until next time period
+        vTaskDelayUntil(&xLastWakeTime, xPeriod); //reference, period
+    }
+}
