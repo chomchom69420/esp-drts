@@ -179,6 +179,63 @@ def include_app_main(system, processor):
 
     return app_main
 
+def find_queue_handles_from_task(task):
+    task_set = extract_number(task["name"])
+    queue_handle = ""
+    if task["type"] == "S":
+        queue_handle = f"xQueue_{task["name"]}_mx{task_set}"
+    elif task["type"] == "A":
+        queue_handle = f"xQueue_{task["name"]}_my{task_set}"
+    else:
+        queue_handle = [f"xQueue_{task["name"]}_mx{task_set}", f"xQueue_{task["name"]}_my{task_set}"]
+
+    return queue_handle
+
+def include_control_task(system, processor):
+    tasks = system.tasks_processor_wise[processor]
+
+    output = open("assets/control.txt", "r").read()
+    incoming_template = open("assets/incoming_routing.txt", "r").read()
+    outgoing_template = open("assets/outgoing_routing.txt", "r").read()
+    incoming_routing = ""
+    outgoing_routing = ""
+
+    for task in tasks:
+        #Find queue handles related to that task
+        queue_handle = find_queue_handles_from_task(task)
+        task_set = extract_number(task["name"])
+        
+        #Incoming routing is only for P and A tasks
+        #Outgoing routing is for P and S 
+        if task["type"] == "P":
+            message_type_in = f"emx{task_set}"
+            message_type_out = f"emy{task_set}"
+
+            #Route incoming
+            temp = incoming_template.replace("{MSG_TYPE}", message_type_in)
+            temp = temp.replace("{QUEUE_HANDLE}", queue_handle[0])
+            incoming_routing+=temp+"\n"
+
+            #Route outgoing
+            outgoing_routing += outgoing_template.replace("{QUEUE_HANDLE}", queue_handle[1])+"\n\n"
+        
+        elif task["type"] == "S":
+            message_type_out = f"emx{task_set}"
+
+            outgoing_routing += outgoing_template.replace("{QUEUE_HANDLE}", queue_handle)+"\n\n"
+
+        elif task["type"] == "A":
+            message_type_in = f"emy{task_set}"
+
+            temp = incoming_template.replace("{MSG_TYPE}", message_type_in)
+            temp = temp.replace("{QUEUE_HANDLE}", queue_handle)
+            incoming_routing += temp+"\n"
+
+    output = output.replace("{INCOMING_ROUTING}", incoming_routing+"\n")
+    output = output.replace("{OUTGOING_ROUTING}", outgoing_routing+"\n")
+    return output+"\n\n"
+            
+
 def gen_code_processor_wise(system):
     n_processors = system.processors
     for processor in range(n_processors):
@@ -199,6 +256,9 @@ def gen_code_processor_wise(system):
         task_code = ""
         for task in system.tasks_processor_wise[processor+1]:
             task_code += read_task_code(task) + "\n\n"
+
+        #Include control task
+        control_task_output = include_control_task(system, processor+1)
         
         #Include app_main()
         app_main = include_app_main(system, processor)
@@ -209,6 +269,7 @@ def gen_code_processor_wise(system):
         file.write(task_handles_output)
         file.write(message_struct_output)
         file.write(task_code)
+        file.write(control_task_output)
         file.write(app_main)
 
         file.close()

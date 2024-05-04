@@ -1,0 +1,18 @@
+        while (uxQueueMessagesWaiting({QUEUE_HANDLE}) > 0) {
+            //Get the message from the queue
+            Data_t xMessage;
+            xQueueReceive({QUEUE_HANDLE}, &xMessage, 0);
+            
+            //send over CAN
+            xTransmitMessage.identifier = 0xAAAA;
+            xTransmitMessage.flags = TWAI_MSG_FLAG_NONE;
+            xTransmitMessage.data_length_code = 5;
+            xTransmitMessage.data[0] = xMessage.ucValue;
+            xTransmitMessage.data[1] = xMessage.eDataType & 0xFF000000;
+            xTransmitMessage.data[2] = xMessage.eDataType & 0x00FF0000;
+            xTransmitMessage.data[3] = xMessage.eDataType & 0x0000FF00;
+            xTransmitMessage.data[4] = xMessage.eDataType & 0x000000FF;
+
+            //Queue message for transmission
+            twai_transmit(&xTransmitMessage, 0);
+        }

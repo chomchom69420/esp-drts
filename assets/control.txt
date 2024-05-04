@@ -1,0 +1,35 @@
+void vTaskControl(void *parameters) {
+    TickType_t xLastWakeTime;
+    const TickType_t xPeriod = sample_period/10;
+    twai_status_info_t xTWAIStatus;
+    twai_message_t xRecvMessage;
+    twai_message_t xTransmitMessage;
+    for(;;) {
+        xLastWakeTime = xTaskGetTickCount();
+
+        //Check if the CAN RX queue is empty or not. If not, store the RX messages in the corresponding task queues
+        if(twai_get_status_info(&xTWAIStatus)!=ESP_OK) {
+            printf("Issue with getting CAN info...");
+        }
+        else {
+            while(xTWAIStatus.msgs_to_rx > 0) {
+                if(twai_receive(&xRecvMessage, 0)==ESP_OK) {
+                    //Check the message data type 
+                    Data_t xMessage;
+                    xMessage.ucValue = xRecvMessage.data[0];
+                    xMessage.eDataType = (int)(xRecvMessage.data[1] << (8*3) |  xRecvMessage.data[2] << (8*2) | xRecvMessage.data[3] << 8 | xRecvMessage.data[4]);
+
+                    //Processor 1 is only receiving two types of messages: mx2, my1
+{INCOMING_ROUTING}
+                }
+            }
+        }
+
+        //If task output queues have stuff, send them over to CAN
+
+{OUTGOING_ROUTING}
+
+        //Suspend until one of the tasks wakes it up
+        vTaskDelayUntil(&xLastWakeTime, xPeriod);
+    }
+}
