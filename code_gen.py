@@ -50,7 +50,7 @@ def read_config():
         for processor in range(processors):
             if task["processor"] == processor+1:
                 tasks_processor_wise[processor+1].append(task)
-    # print(tasks_processor_wise)
+
     our_system = System(processors, sampling_period, n_tasks, n_task_sets, tasks, tasks_processor_wise)
     return our_system
 
@@ -160,7 +160,7 @@ def find_task_name(task_handle):
 
     return extracted_string
 
-def include_app_main(system, processor):
+def include_app_main(system):
     app_main = open("assets/app_main.txt", "r").read()
 
     queue_create = ""
@@ -240,6 +240,7 @@ def gen_code_processor_wise(system):
     n_processors = system.processors
     for processor in range(n_processors):
         file = open(f"processor_{processor+1}.c", "w")
+        
         #Clean task_handles and queue_handles variables
         system.task_handles = []
         system.queue_handles = []
@@ -261,8 +262,9 @@ def gen_code_processor_wise(system):
         control_task_output = include_control_task(system, processor+1)
         
         #Include app_main()
-        app_main = include_app_main(system, processor)
+        app_main = include_app_main(system)
 
+        #Write all code sections to the file
         file.write(headers)
         file.write(timing_config)
         file.write(queue_output)
@@ -273,7 +275,6 @@ def gen_code_processor_wise(system):
         file.write(app_main)
 
         file.close()
-
 
 def main():
     system = read_config()
