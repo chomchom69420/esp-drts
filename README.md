@@ -45,4 +45,4 @@ The following steps should be used for running the code.
 - Make sure the ESP32 is hooked up to the computer. 
 - Check the port of the esp32 by runnning the command `ls dev/tty*`
 - Run the command `idf.py build` to build the projects 
-- Run the command `idf.py -p <PORT_NAME> flash` to flash the code into the coressponding ESP32. 
+- Run the command `idf.py -p <PORT_NAME> flash` to flash the code into the corresponding ESP32. 
