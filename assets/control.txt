@@ -19,14 +19,12 @@ void vTaskControl(void *parameters) {
                     xMessage.ucValue = xRecvMessage.data[0];
                     xMessage.eDataType = (int)(xRecvMessage.data[1] << (8*3) |  xRecvMessage.data[2] << (8*2) | xRecvMessage.data[3] << 8 | xRecvMessage.data[4]);
 
-                    //Processor 1 is only receiving two types of messages: mx2, my1
 {INCOMING_ROUTING}
                 }
             }
         }
 
         //If task output queues have stuff, send them over to CAN
-
 {OUTGOING_ROUTING}
 
         //Suspend until one of the tasks wakes it up
