@@ -27,7 +27,7 @@ void vTaskControl(void *parameters) {
         //If task output queues have stuff, send them over to CAN
 {OUTGOING_ROUTING}
 
-        //Suspend until one of the tasks wakes it up
+        //Delay until next period or until one of the tasks wakes it up
         vTaskDelayUntil(&xLastWakeTime, xPeriod);
     }
 }
